@@ -211,6 +211,7 @@ func prune(output string, ids []string) {
 	}
 }
 
+// TODO reuse photolibrary.Album
 type myAlbum struct {
 	Id           string   `json:"id,omitempty"`
 	ProductUrl   string   `json:"productUrl,omitempty"`
