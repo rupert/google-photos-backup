@@ -127,8 +127,7 @@ func downloadPhotos(output string, service *photoslibrary.Service) []string {
 	var ids []string
 
 	for more {
-		call := mediaItemsService.Search(&photoslibrary.SearchMediaItemsRequest{PageSize: int64(pageSize), PageToken: pageToken})
-		response, err := call.Do()
+		response, err := mediaItemsService.Search(&photoslibrary.SearchMediaItemsRequest{PageSize: int64(pageSize), PageToken: pageToken}).Do()
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -223,8 +222,7 @@ func downloadAlbums(output string, service *photoslibrary.Service) []string {
 	albumsService := photoslibrary.NewAlbumsService(service)
 	mediaItemsService := photoslibrary.NewMediaItemsService(service)
 
-	call := albumsService.List()
-	response, err := call.Do()
+	response, err := albumsService.List().Do()
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -253,8 +251,7 @@ func getAlbumMediaItemIds(service *photoslibrary.MediaItemsService, id string) [
 	var ids []string
 
 	for more {
-		call := service.Search(&photoslibrary.SearchMediaItemsRequest{AlbumId: id, PageSize: int64(pageSize), PageToken: pageToken})
-		response, err := call.Do()
+		response, err := service.Search(&photoslibrary.SearchMediaItemsRequest{AlbumId: id, PageSize: int64(pageSize), PageToken: pageToken}).Do()
 		if err != nil {
 			log.Fatal(err)
 		}
