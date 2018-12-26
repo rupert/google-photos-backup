@@ -10,6 +10,14 @@
   version = "v0.34.0"
 
 [[projects]]
+  branch = "master"
+  digest = "1:289fa52f4d9e9c817a003324bc14e9339b996dbe02b9f6cfc57a9383e5365287"
+  name = "github.com/docopt/docopt-go"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "ee0de3bc6815ee19d4a46c7eb90f829db0e014b1"
+
+[[projects]]
   digest = "1:97df918963298c287643883209a2c3f642e6593379f97ab400c2a2e219ab647d"
   name = "github.com/golang/protobuf"
   packages = ["proto"]
@@ -86,6 +94,7 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "github.com/docopt/docopt-go",
     "github.com/natefinch/atomic",
     "golang.org/x/oauth2",
     "golang.org/x/oauth2/google",
