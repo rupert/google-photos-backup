@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"io/ioutil"
 	"log"
 	"os"
@@ -10,7 +11,11 @@ import (
 )
 
 func main() {
-	b, err := ioutil.ReadFile("credentials.json")
+	credentialsFilename := flag.String("credentials-file", "credentials.json", "File containing Google oauth credentials (as downloaded from the Google Cloud Console)")
+	tokenFilename := flag.String("token-file", "token.json", "File where the API token should be cached")
+	flag.Parse()
+
+	b, err := ioutil.ReadFile(*credentialsFilename)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -20,7 +25,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	client := GetClient(config)
+	client := GetClient(config, *tokenFilename)
 
 	service, err := photoslibrary.New(client)
 	if err != nil {

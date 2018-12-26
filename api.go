@@ -12,8 +12,7 @@ import (
 )
 
 // GetClient returns an authenticated Google API client.
-func GetClient(config *oauth2.Config) *http.Client {
-	filename := "token.json"
+func GetClient(config *oauth2.Config, filename string) *http.Client {
 	token, err := readToken(filename)
 	if err != nil {
 		token = getTokenFromWeb(config)
