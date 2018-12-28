@@ -27,9 +27,7 @@ jobs:
       - persist_to_workspace:
           root: /go/src/github.com/rupert/google-photos-backup
           paths:
-            - google-photos-backup_darwin_amd64
-            - google-photos-backup_linux_amd64
-            - google-photos-backup_linux_arm
+            - google-photos-backup_*
 
   release:
     docker:
