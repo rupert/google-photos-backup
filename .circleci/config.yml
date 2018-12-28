@@ -5,6 +5,7 @@ workflows:
   build:
     jobs:
       - build
+      - release
 
 jobs:
   build:
@@ -20,3 +21,11 @@ jobs:
             chmod +x /go/bin/dep
       - run: dep ensure
       - run: go build
+
+  release:
+    docker:
+      - image: circleci/golang:1.11
+    steps:
+      - run:
+          name: Download ghr
+          command: go get github.com/tcnksm/ghr
