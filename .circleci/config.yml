@@ -24,6 +24,12 @@ jobs:
           command: go get github.com/mitchellh/gox
       - run: dep ensure
       - run: gox -osarch "linux/arm linux/amd64 darwin/amd64"
+      - persist_to_workspace:
+          root: /go/src/github.com/rupert/google-photos-backup
+          paths:
+            - google-photos-backup_darwin_amd64
+            - google-photos-backup_linux_amd64
+            - google-photos-backup_linux_arm
 
   release:
     docker:
