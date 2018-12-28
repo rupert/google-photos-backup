@@ -11,6 +11,8 @@ import (
 	"google.golang.org/api/photoslibrary/v1"
 )
 
+const version = "0.0.0"
+
 func main() {
 	usage := `Google Photos Backup
 
@@ -25,7 +27,7 @@ Options:
   --credentials-file=FILE  File containing Google OAuth credentials (as downloaded from the Google Cloud Console) [default: credentials.json]
   --token-file=FILE        File where the Google OAuth token should be cached [default: token.json]`
 
-	arguments, _ := docopt.ParseArgs(usage, os.Args, "0.0.0")
+	arguments, _ := docopt.ParseArgs(usage, os.Args, version)
 	backupDir, _ := arguments.String("BackupDir")
 	credentialsFile, _ := arguments.String("CredentialsFile")
 	tokenFile, _ := arguments.String("TokenFile")
