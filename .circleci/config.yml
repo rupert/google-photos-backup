@@ -23,7 +23,7 @@ jobs:
           name: Download gox
           command: go get github.com/mitchellh/gox
       - run: dep ensure
-      - run: go build
+      - run: gox -osarch "linux/arm linux/amd64 darwin/amd64"
 
   release:
     docker:
