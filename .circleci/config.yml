@@ -43,4 +43,4 @@ jobs:
           command: go get github.com/tcnksm/ghr
       - attach_workspace:
           at: .
-      - run: ghr -u "$CIRCLE_PROJECT_USERNAME" -r "$CIRCLE_PROJECT_REPONAME" -replace "$(git describe --abbrev=0 --tags)" releases/
+      - run: ghr -u "$CIRCLE_PROJECT_USERNAME" -r "$CIRCLE_PROJECT_REPONAME" -c "$CIRCLE_SHA1" -replace "$(git describe --abbrev=0 --tags)" releases/
