@@ -25,14 +25,14 @@ jobs:
           name: Download gox
           command: go get github.com/mitchellh/gox
       - run: dep ensure
-      - run: gox -osarch "linux/arm linux/amd64 darwin/amd64" -output "build/google-photos-backup_{{.OS}}_{{.Arch}}"
+      - run: gox -osarch "linux/arm linux/amd64 darwin/amd64" -output "releases/google-photos-backup_{{.OS}}_{{.Arch}}"
       - persist_to_workspace:
-          root: /go/src/github.com/rupert/google-photos-backup
+          root: .
           paths:
-            - build
+            - releases
       - store_artifacts:
-          path: /go/src/github.com/rupert/google-photos-backup/build
-          destination: build
+          path: releases
+          destination: releases
 
   release:
     docker:
@@ -41,3 +41,6 @@ jobs:
       - run:
           name: Download ghr
           command: go get github.com/tcnksm/ghr
+      - attach_workspace:
+          at: .
+      - run: ghr -u "$CIRCLE_PROJECT_USERNAME" -r "$CIRCLE_PROJECT_REPONAME" -replace "$(git describe --abbrev=0 --tags)" releases/
