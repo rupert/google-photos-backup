@@ -23,11 +23,14 @@ jobs:
           name: Download gox
           command: go get github.com/mitchellh/gox
       - run: dep ensure
-      - run: gox -osarch "linux/arm linux/amd64 darwin/amd64"
+      - run: gox -osarch "linux/arm linux/amd64 darwin/amd64" -output "build/google-photos-backup_{{.OS}}_{{.Arch}}"
       - persist_to_workspace:
           root: /go/src/github.com/rupert/google-photos-backup
           paths:
-            - google-photos-backup_*
+            - build
+      - store_artifacts:
+          path: /go/src/github.com/rupert/google-photos-backup/build
+          destination: build
 
   release:
     docker:

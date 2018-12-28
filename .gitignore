@@ -1,4 +1,5 @@
 vendor
+build
 google-photos-backup
 credentials.json
 token.json
