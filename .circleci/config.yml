@@ -5,7 +5,9 @@ workflows:
   build:
     jobs:
       - build
-      - release
+      - release:
+          requires:
+            - build
 
 jobs:
   build:
