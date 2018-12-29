@@ -46,6 +46,7 @@ jobs:
     docker:
       - image: circleci/golang:1.11
     steps:
+      - checkout
       - run:
           name: Download ghr
           command: go get github.com/tcnksm/ghr
@@ -58,4 +59,4 @@ jobs:
             echo "sha1: $CIRCLE_SHA1"
             tag=$(git describe --abbrev=0 --tags)
             echo "tag: $tag"
-            ghr -u "$CIRCLE_PROJECT_USERNAME" -r "$CIRCLE_PROJECT_REPONAME" -c "$CIRCLE_SHA1" -replace "$tag" releases/
+            ghr -u "$CIRCLE_PROJECT_USERNAME" -r "$CIRCLE_PROJECT_REPONAME" -replace "$tag" releases/
