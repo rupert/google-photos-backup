@@ -51,4 +51,11 @@ jobs:
           command: go get github.com/tcnksm/ghr
       - attach_workspace:
           at: .
-      - run: ghr -u "$CIRCLE_PROJECT_USERNAME" -r "$CIRCLE_PROJECT_REPONAME" -c "$CIRCLE_SHA1" -replace "$(git describe --abbrev=0 --tags)" releases/
+      - run:
+          name: Upload binaries
+          command: |
+            echo "repo: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME"
+            echo "sha1: $CIRCLE_SHA1"
+            tag=$(git describe --abbrev=0 --tags)
+            echo "tag: $tag"
+            ghr -u "$CIRCLE_PROJECT_USERNAME" -r "$CIRCLE_PROJECT_REPONAME" -c "$CIRCLE_SHA1" -replace "$tag" releases/
