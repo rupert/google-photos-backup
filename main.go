@@ -11,7 +11,7 @@ import (
 	"google.golang.org/api/photoslibrary/v1"
 )
 
-const version = "0.0.0"
+const version = "0.1.0"
 
 func main() {
 	usage := `Google Photos Backup
