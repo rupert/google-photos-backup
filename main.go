@@ -17,7 +17,7 @@ func main() {
 	usage := `Google Photos Backup
 
 Usage:
-  google-photos-backup <backup-dir>
+  google-photos-backup [options] <backup-dir>
   google-photos-backup -h | --help
   google-photos-backup --version
 
@@ -27,10 +27,10 @@ Options:
   --credentials-file=FILE  File containing Google OAuth credentials (as downloaded from the Google Cloud Console) [default: credentials.json]
   --token-file=FILE        File where the user's Google OAuth token should be cached [default: token.json]`
 
-	arguments, _ := docopt.ParseArgs(usage, os.Args[1:], version)
-	backupDir, _ := arguments.String("BackupDir")
-	credentialsFile, _ := arguments.String("CredentialsFile")
-	tokenFile, _ := arguments.String("TokenFile")
+	opts, _ := docopt.ParseArgs(usage, os.Args[1:], version)
+	backupDir, _ := opts.String("<backup-dir>")
+	credentialsFile, _ := opts.String("--credentials-file")
+	tokenFile, _ := opts.String("--token-file")
 
 	b, err := ioutil.ReadFile(credentialsFile)
 	if err != nil {
